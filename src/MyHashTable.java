@@ -7,10 +7,7 @@ public class MyHashTable <K, V>{
             this.key = key;
             this.value = value;
         }
-        @Override
-        public String toString(){
-            return "{" + key + " " + value + "}";
-        }
+
     }
 
     private hashNode<K, V>[] chainArray;
@@ -31,30 +28,81 @@ public class MyHashTable <K, V>{
 
     public void put(K key, V value){
         int index = Hash(key);
-        hashNode<K, V> node = chainArray[index];
-        while (node != null) {
-            if (node.key.equals(key)) {
+        hashNode node = chainArray[index];
+        while(node!=null){
+            if(node.key.equals(key)){
                 node.value = value;
                 return;
             }
             node = node.next;
         }
-        hashNode<K, V> newNode = new hashNode<K, V>(key, value);
-        newNode.next = chainArray[index];
-        chainArray[index] = newNode;
         size++;
+        node = new hashNode<>(key, value);
+        node.next = chainArray[index];
+        chainArray[index] = node;
     }
-    public V get(K key){
+  public V get(K key){
         int index = Hash(key);
-        hashNode<K, V> node = chainArray[index];
-        while (node != null) {
-            if (node.key.equals(key)) {
-                return node.value;
+        hashNode node = chainArray[index];
+        while(node != null){
+            if(node.key.equals(key)){
+                return (V) node.value;
             }
             node = node.next;
         }
+
+        return null;
+  }
+
+  public V remove(K key){
+        int index = Hash(key);
+        hashNode node = chainArray[index];
+        hashNode prev = null;
+        while(node!=null){
+            if(node.key.equals(key)){
+                if(prev == null){
+                    chainArray[index] = node.next;
+                }else{
+                    prev.next = node.next;
+                }
+                size--;
+            }
+            prev = node;
+            node = node.next;
+        }
+        return null;//not found
+  }
+
+  public boolean contains(V value){
+        for(int i = 0 ; i<M;i++){
+            hashNode node = chainArray[i];
+            while(node!=null){
+                if(node.value.equals(value)){
+                    return true;
+                }
+                node = node.next;
+            }
+
+        }
+        return false;
+    }
+
+    public K getkey(V value){
+        for(int i =0 ; i < M;i++){
+            hashNode node = chainArray[i];
+            while(node != null){
+                if(node.value.equals(value)){
+                    return (K) node.key;
+                }
+                node =node.next;
+            }
+        }
         return null;
     }
+
+
+
+
 //    public V remove(K key){}
 //    public boolean contains(V value){}
 //    public K getkey(V value){}

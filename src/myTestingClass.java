@@ -17,7 +17,13 @@ public class myTestingClass {
         String value1 = table.get(new Student("name2",2));
         System.out.println(value1);
 
+        System.out.println(table.get(new Student("name3",3)));
+
+        table.remove(new Student("name3", 3)); ///let's see what we got after removing
+        System.out.println(table.get(new Student("name3",3)));
         System.out.println(table.size);
+
+        System.out.println(table.contains("GOODJOB56"));
 
 
 
