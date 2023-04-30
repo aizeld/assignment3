@@ -1,4 +1,16 @@
 public class Student {
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     private String name;
     private int age;
     private int id;
@@ -31,5 +43,6 @@ public class Student {
         Student other = (Student) obj;
         return this.name.equals(other.name) && this.id == other.id;
     }
+
 
 }

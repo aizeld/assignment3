@@ -23,7 +23,16 @@ public class myTestingClass {
         System.out.println(table.get(new Student("name3",3)));
         System.out.println(table.size);
 
-        System.out.println(table.contains("GOODJOB56"));
+        System.out.println(table.contains("GOODJOB101")); // false, лимит чисел 100, проверил на работоспособность
+        System.out.println(table.contains("GOODJOB56")); // true
+
+        Student key = table.getkey("GOODJOB56");
+        System.out.println(key.getName() + " " + key.getId()); // показывает
+
+        int[] bucketsizes = table.getBuckeds();
+        for(int i = 0;i<bucketsizes.length; i++){
+         System.out.println("Every size of the bucket " + i + " is " + bucketsizes[i]);
+        }
 
 
 

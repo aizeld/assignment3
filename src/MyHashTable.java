@@ -8,6 +8,7 @@ public class MyHashTable <K, V>{
             this.value = value;
         }
 
+
     }
 
     private hashNode<K, V>[] chainArray;
@@ -100,7 +101,22 @@ public class MyHashTable <K, V>{
         return null;
     }
 
+    public int[] getBuckeds(){
 
+        int []buckets = new int [M];
+        for(int i =0; i< M;i++){
+            int count = 0;
+            hashNode node = chainArray[i];
+            while(node!= null){
+                count++;
+                node = node.next;
+            }
+            buckets[i] = count;
+
+        }
+        return buckets;
+
+    }
 
 
 //    public V remove(K key){}
