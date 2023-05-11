@@ -22,6 +22,8 @@ public class myTestingClass {
         table.remove(new Student("name3", 3)); ///let's see what we got after removing
         System.out.println(table.get(new Student("name3",3)));
         System.out.println(table.size);
+        table.put(new Student("name12", 3233), "IZZYPEAZY");
+        System.out.println(table.getkey("IZZYPEAZY"));
 
         System.out.println(table.contains("GOODJOB101")); // false, лимит чисел 100, проверил на работоспособность
         System.out.println(table.contains("GOODJOB56")); // true

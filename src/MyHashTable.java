@@ -29,11 +29,10 @@ public class MyHashTable <K, V>{
 
     public void put(K key, V value){
         int index = Hash(key);
-        hashNode node = chainArray[index];
+        hashNode<K,V> node = chainArray[index];
         while(node!=null){
             if(node.key.equals(key)){
                 node.value = value;
-                return;
             }
             node = node.next;
         }
@@ -44,10 +43,10 @@ public class MyHashTable <K, V>{
     }
   public V get(K key){
         int index = Hash(key);
-        hashNode node = chainArray[index];
+        hashNode<K,V> node = chainArray[index];
         while(node != null){
             if(node.key.equals(key)){
-                return (V) node.value;
+                return node.value;
             }
             node = node.next;
         }
@@ -57,8 +56,8 @@ public class MyHashTable <K, V>{
 
   public V remove(K key){
         int index = Hash(key);
-        hashNode node = chainArray[index];
-        hashNode prev = null;
+        hashNode<K,V> node = chainArray[index];
+        hashNode<K,V> prev = null;
         while(node!=null){
             if(node.key.equals(key)){
                 if(prev == null){
@@ -76,7 +75,7 @@ public class MyHashTable <K, V>{
 
   public boolean contains(V value){
         for(int i = 0 ; i<M;i++){
-            hashNode node = chainArray[i];
+            hashNode<K,V> node = chainArray[i];
             while(node!=null){
                 if(node.value.equals(value)){
                     return true;
@@ -90,10 +89,10 @@ public class MyHashTable <K, V>{
 
     public K getkey(V value){
         for(int i =0 ; i < M;i++){
-            hashNode node = chainArray[i];
+            hashNode<K,V> node = chainArray[i];
             while(node != null){
                 if(node.value.equals(value)){
-                    return (K) node.key;
+                    return node.key;
                 }
                 node =node.next;
             }
@@ -106,7 +105,7 @@ public class MyHashTable <K, V>{
         int []buckets = new int [M];
         for(int i =0; i< M;i++){
             int count = 0;
-            hashNode node = chainArray[i];
+            hashNode<K,V> node = chainArray[i];
             while(node!= null){
                 count++;
                 node = node.next;
